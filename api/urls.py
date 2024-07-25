@@ -1,17 +1,17 @@
 from django.urls import path
-from .views import StudentListView
-from .views import TeacherListView
-from .views import CourseListView
-from .views import ClassPeriodListView
-from .views import ClassesListView
+
+from api.views import Class_PeriodListViews, ClassroomListViews, CourseListViews, StudentListViews, TeacherListViews,StudentDetailView, TeacherDetailView, CourseDetailView, ClassroomDetailView, Class_PeriodDetailView
+
 
 urlpatterns = [
-    path("students/" ,StudentListView.as_view(),name="student_list_view"),
-    path("teachers/" ,TeacherListView.as_view(),name="teacher_list_view"),
-    path("courses/" ,CourseListView.as_view(),name="course_list_view"),
-    path("classrooms/" ,ClassesListView.as_view(),name="classroom_list_view"),
-    path("classperiods/" ,ClassPeriodListView.as_view(),name="classperiod_list_view"),
+    path("Students/",StudentListViews.as_view(),name = "student_list_view"),
+    path("Teachers/",TeacherListViews.as_view(),name = "teacher_list_view"),
+    path("Courses/",CourseListViews.as_view(),name = "course_list_view"),
+    path("Classroom/",ClassroomListViews.as_view(),name = "classroom_list_view"),
+    path("Class_Period/",Class_PeriodListViews.as_view(),name = "class_period_list_view"),
+    path("Students/<int:id>/",StudentDetailView.as_view(), name = "student_detail_view"),
+    path("Teachers/<int:id>/",TeacherDetailView.as_view(), name = "teacher_detail_view"),
+    path("Courses/<int:id>/",CourseDetailView.as_view(), name = "course_detail_view"),
+    path("Classrooms/<int:id>/",ClassroomDetailView.as_view(), name = "classroom_detail_view"),
+    path("Class_Periods/<int:id>/",Class_PeriodDetailView.as_view(), name = "class_period_detail_view"),
 ]
-
-
-

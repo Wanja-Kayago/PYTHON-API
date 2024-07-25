@@ -1,18 +1,41 @@
 from django.db import models
-import datetime
+from course.models import Courses
+from student.models import Student
+
+
+
 # Create your models here.
 
-class ClassPeriod(models.Model):
-    start_time = models.DateField(datetime.date.today)
-    end_time = models.TimeField()
-    course = models.CharField(max_length=30)
-    classroom = models.CharField(max_length=30)
-    day_of_the_week = models.DateField(datetime.date.today)
-    
 
-
+class Class_Period(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length = 30)
+    start_time = models.TimeField()
+    end_date = models.TimeField()
+    course = models.ForeignKey(Courses, on_delete=models.SET_NULL, null=True, related_name='student_class')
+    student_class = models.ForeignKey(Student, on_delete = models.SET_NULL, null = True, related_name ='course' )
+    day_of_week = models.CharField(max_length = 30)
+    created_at = models.DateField()
+    updated_at = models.DateField()
     def __str__(self):
-           return f"{self.course} {self.classroom}"
+        return self.name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
